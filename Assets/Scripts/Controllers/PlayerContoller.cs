@@ -4,7 +4,7 @@ namespace Controllers
 {
     public class PlayerContoller : MonoBehaviour
     {
-        // Start is called before the first frame update
+        public GameObject obj;
         void Start()
         {
         
