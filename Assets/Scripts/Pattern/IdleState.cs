@@ -1,8 +1,9 @@
 ﻿using Controllers;
+using UnityEngine;
 
 namespace Pattern
 {
-    class IdleState : ILocomotionState
+    public  class IdleState : ILocomotionState
     {
         private PlayerContoller _playerContoller;
         public IdleState(PlayerContoller playerContoller)
@@ -11,15 +12,20 @@ namespace Pattern
         }
         public void Enter()
         {
-            
+            Debug.Log("idle enter");
         }
 
         public void Update()
         {
+            _playerContoller.Machine.ChangeTo(new WalkState(_playerContoller));
+
         }
 
         public void Exit()
         {
+            Debug.Log("idle exit");
+
         }
     }
+    
 }

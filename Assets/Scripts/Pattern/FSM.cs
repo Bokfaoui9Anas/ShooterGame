@@ -4,8 +4,8 @@ namespace Pattern
 {
     public abstract class Fsm
     {
-        protected abstract void Initialisation(IState state);
-        protected abstract void ChangeTo(IState NewState);
-        protected abstract void Update();
+        public abstract void Initialisation(IState state);
+        public abstract void ChangeTo(IState NewState);
+        public abstract void Update();
     }
 }

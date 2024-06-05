@@ -8,22 +8,22 @@ namespace Pattern
         private IdleState _idle;
         private ILocomotionState _currentState;
 
-       
-        protected override void Initialisation(IState state)
+
+        public override void Initialisation(IState state)
         {
-            state = _currentState;
+            _currentState = (ILocomotionState) state;
             _currentState.Enter();
         }
 
-        protected override void ChangeTo(IState newState)
+        public override void ChangeTo(IState newState)
         {
           _currentState.Exit();
-          _currentState = newState as ILocomotionState;
+          _currentState = (ILocomotionState)newState;
           newState.Enter();
             
         }
 
-        protected override void Update()
+        public override void Update()
         {
             _currentState?.Update();
         }
