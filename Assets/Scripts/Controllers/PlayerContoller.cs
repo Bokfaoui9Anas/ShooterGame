@@ -4,7 +4,6 @@ namespace Controllers
 {
     public class PlayerContoller : MonoBehaviour
     {
-        public GameObject obj;
         void Start()
         {
         
