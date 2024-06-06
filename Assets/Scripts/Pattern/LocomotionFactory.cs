@@ -12,6 +12,9 @@ namespace Pattern
                     return new IdleState(playerContoller);
                 case "Walk":
                     return new WalkState(playerContoller);
+                case "Jump":
+                    return new JumpState(playerContoller);
+                case "Fall":
                 default:
                     return null;
             }

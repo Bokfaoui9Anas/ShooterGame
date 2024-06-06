@@ -6,6 +6,7 @@ namespace Pattern
     public class WalkState : ILocomotionState
     {
         private readonly PlayerContoller _playerContoller;
+        private static readonly int Loco = Animator.StringToHash("loco");
 
         public WalkState(PlayerContoller playerContoller)
         {
@@ -13,8 +14,7 @@ namespace Pattern
         }
 
         public void Enter()
-        {
-          
+        { Debug.Log("Walk enter");
         }
 
         public void Update()
@@ -26,8 +26,12 @@ namespace Pattern
             _playerContoller.transform.LookAt(_playerContoller.transform.position + _playerContoller.Input);
             _playerContoller.Landing(_playerContoller);
             ////Change State
-            if(_playerContoller.Input == Vector3.zero && _playerContoller._isgrounded)
+            if (_playerContoller.Input == Vector3.zero && _playerContoller._isgrounded)
                 _playerContoller.Machine.ChangeTo(LocomotionFactory.Create("Idle", _playerContoller));
+            if (Input.GetKeyDown(KeyCode.Space) && _playerContoller._isgrounded)
+            {
+                _playerContoller.Machine.ChangeTo(LocomotionFactory.Create("Jump",_playerContoller));
+            }
         }
 
         public void Exit()
@@ -37,7 +41,7 @@ namespace Pattern
 
         public void setAnimationState(Animator anime)
         {
-            anime.SetFloat("loco",_playerContoller.Input.Value.magnitude);
+            anime.SetFloat(Loco, _playerContoller.Input.Value.magnitude);
         }
     }
 }

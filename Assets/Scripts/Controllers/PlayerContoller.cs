@@ -1,3 +1,4 @@
+using System;
 using Pattern;
 using ScriptableObjectArchitecture;
 using UnityEngine;
@@ -7,58 +8,43 @@ namespace Controllers
     [RequireComponent(typeof(CharacterController))]
     public class PlayerContoller : MonoBehaviour
     {
-        [SerializeField] private ILocomotionState _state;
-        [field: SerializeField] public Fsm Machine { get; private set; }
         [SerializeField] public Animator _anim;
+        [SerializeField] public bool _isgrounded = true;
+        [SerializeField] private ILocomotionState _state;
         [SerializeField] public Vector3Variable Input;
-         private CharacterController characterController;
-        [SerializeField] public float  speed;
-        [SerializeField] public bool  _isgrounded = true;
+        [SerializeField] public float speed;
+
+       [field:NonSerialized] public Vector3 velocity;
+        [field: SerializeField] public Fsm Machine { get; private set; }
+
+        public CharacterController CharacterController { get; set; }
+        [SerializeField]  public float jumpHeight = 5f;
         
-        
 
-        public CharacterController CharacterController
+        private void Start()
         {
-            get => characterController; set => characterController = value;
-        }
-
-
-        void Start()
-        {
-            characterController = this.GetComponent<CharacterController>();
+            CharacterController = GetComponent<CharacterController>();
             Machine = new LocomotionMachine();
             Machine.Initialisation(LocomotionFactory.Create("Idle", this));
         }
-        
 
-        void Update()
+        private void Update()
         {
-            _isgrounded = characterController.isGrounded;
-          //  Landing(this);
-           
-            
+            _isgrounded = CharacterController.isGrounded;
             Machine.Update();
         }
 
-        public Vector3 velocity;
-
+        public float gravity = -9.81f;
         public void Landing(PlayerContoller playerContoller)
         {
-           var gravity = -9.81f;
+            
             velocity = Vector3.zero;
             velocity.y += gravity * Time.deltaTime;
-            if (playerContoller._isgrounded && velocity.y <0.2f)
-            {
-                velocity.y = -1;
-            }
-            playerContoller.CharacterController.Move(velocity);
-            
-            
+            if (playerContoller._isgrounded && velocity.y < 0.2f) velocity.y = -1;
 
-           
+            playerContoller.CharacterController.Move(velocity);
         }
 
-
+      
     }
-    
 }
