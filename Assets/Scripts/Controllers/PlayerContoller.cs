@@ -40,10 +40,12 @@ namespace Controllers
             Machine.Update();
         }
 
+        public Vector3 velocity;
+
         public void Landing(PlayerContoller playerContoller)
         {
            var gravity = -9.81f;
-           var velocity = Vector3.zero;
+            velocity = Vector3.zero;
             velocity.y += gravity * Time.deltaTime;
             if (playerContoller._isgrounded && velocity.y <0.2f)
             {

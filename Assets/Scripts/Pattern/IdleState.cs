@@ -15,11 +15,12 @@ namespace Pattern
 
         public void Enter()
         {
-            setAnimationState(_playerContoller._anim);
+           
         }
 
         public void Update()
         {
+            setAnimationState(_playerContoller._anim);
             _playerContoller.Landing(_playerContoller);
             if (_playerContoller.Input!= Vector3.zero )
             {
@@ -36,7 +37,7 @@ namespace Pattern
 
         public void setAnimationState(Animator anime)
         {
-            anime.SetFloat("loco",0);
+            anime.SetFloat("loco",_playerContoller.Input.Value.magnitude);
         }
     }
 }
