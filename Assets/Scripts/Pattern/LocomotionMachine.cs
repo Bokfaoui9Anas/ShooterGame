@@ -1,12 +1,10 @@
-﻿using Controllers;
-using UnityEditor.IMGUI.Controls;
-
-namespace Pattern
+﻿namespace Pattern
 {
     public class LocomotionMachine : Fsm
     {
-        private IdleState _idle;
         private ILocomotionState _currentState;
+        private IdleState _idle;
+        private WalkState _walk;
 
 
         public override void Initialisation(IState state)
@@ -17,10 +15,9 @@ namespace Pattern
 
         public override void ChangeTo(IState newState)
         {
-          _currentState.Exit();
-          _currentState = (ILocomotionState)newState;
-          newState.Enter();
-            
+            _currentState.Exit();
+            _currentState = (ILocomotionState) newState;
+            newState.Enter();
         }
 
         public override void Update()

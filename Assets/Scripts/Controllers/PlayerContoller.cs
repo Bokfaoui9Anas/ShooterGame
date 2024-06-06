@@ -11,15 +11,14 @@ namespace Controllers
 
         void Start()
         {
-
             Machine = new LocomotionMachine();
-            Machine.Initialisation(new IdleState(this));
+            Machine.Initialisation(LocomotionFactory.Create("Idle", this));
         }
 
         // Update is called once per frame
         void Update()
         {
-        
+            Machine.Update();
         }
     }
 }

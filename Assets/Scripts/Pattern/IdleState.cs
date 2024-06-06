@@ -3,13 +3,15 @@ using UnityEngine;
 
 namespace Pattern
 {
-    public  class IdleState : ILocomotionState
+    public class IdleState : ILocomotionState
     {
-        private PlayerContoller _playerContoller;
+        private readonly PlayerContoller _playerContoller;
+
         public IdleState(PlayerContoller playerContoller)
         {
-            this._playerContoller = playerContoller;
+            _playerContoller = playerContoller;
         }
+
         public void Enter()
         {
             Debug.Log("idle enter");
@@ -17,15 +19,13 @@ namespace Pattern
 
         public void Update()
         {
-            _playerContoller.Machine.ChangeTo(new WalkState(_playerContoller));
-
+            if (Input.GetKey(KeyCode.W))
+                _playerContoller.Machine.ChangeTo(LocomotionFactory.Create("Walk", _playerContoller));
         }
 
         public void Exit()
         {
             Debug.Log("idle exit");
-
         }
     }
-    
 }

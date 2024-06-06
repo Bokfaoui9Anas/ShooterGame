@@ -1,6 +1,4 @@
-﻿using Controllers;
-
-namespace Pattern
+﻿namespace Pattern
 {
     public abstract class Fsm
     {
