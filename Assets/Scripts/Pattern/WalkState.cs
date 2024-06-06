@@ -19,9 +19,9 @@ namespace Pattern
 
         public void Update()
         {
-            Debug.Log("walk updat");
-
-            
+            var move = _playerContoller.Input.Value * Time.deltaTime * _playerContoller.speed;
+            _playerContoller.CharacterController.Move(move);
+            if(_playerContoller.Input == Vector3.zero)
                 _playerContoller.Machine.ChangeTo(LocomotionFactory.Create("Idle", _playerContoller));
         }
 

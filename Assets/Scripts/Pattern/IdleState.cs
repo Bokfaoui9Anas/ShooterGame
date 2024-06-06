@@ -19,9 +19,12 @@ namespace Pattern
 
         public void Update()
         {
-            Debug.Log("idle updat");
-            
+            if (_playerContoller.Input!= Vector3.zero)
+            {
                 _playerContoller.Machine.ChangeTo(LocomotionFactory.Create("Walk", _playerContoller));
+            }
+
+           
         }
 
         public void Exit()
