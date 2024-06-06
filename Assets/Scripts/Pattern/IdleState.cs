@@ -1,4 +1,5 @@
 ﻿using Controllers;
+using TMPro;
 using UnityEngine;
 
 namespace Pattern
@@ -14,12 +15,13 @@ namespace Pattern
 
         public void Enter()
         {
-            Debug.Log("idle enter");
+            setAnimationState(_playerContoller._anim);
         }
 
         public void Update()
         {
-            if (_playerContoller.Input!= Vector3.zero)
+            _playerContoller.Landing(_playerContoller);
+            if (_playerContoller.Input!= Vector3.zero )
             {
                 _playerContoller.Machine.ChangeTo(LocomotionFactory.Create("Walk", _playerContoller));
             }
@@ -30,6 +32,11 @@ namespace Pattern
         public void Exit()
         {
             Debug.Log("idle exit");
+        }
+
+        public void setAnimationState(Animator anime)
+        {
+            anime.SetFloat("loco",0);
         }
     }
 }

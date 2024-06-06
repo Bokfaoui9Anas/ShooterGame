@@ -14,20 +14,28 @@ namespace Pattern
 
         public void Enter()
         {
-            Debug.Log("Walk enter");
+           setAnimationState(_playerContoller._anim);
         }
 
         public void Update()
         {
+
             var move = _playerContoller.Input.Value * Time.deltaTime * _playerContoller.speed;
             _playerContoller.CharacterController.Move(move);
-            if(_playerContoller.Input == Vector3.zero)
+            _playerContoller.transform.LookAt(_playerContoller.transform.position + _playerContoller.Input);
+            _playerContoller.Landing(_playerContoller);
+            if(_playerContoller.Input == Vector3.zero && _playerContoller._isgrounded)
                 _playerContoller.Machine.ChangeTo(LocomotionFactory.Create("Idle", _playerContoller));
         }
 
         public void Exit()
         {
             Debug.Log("Walk exit");
+        }
+
+        public void setAnimationState(Animator anime)
+        {
+            anime.SetFloat("loco",1);
         }
     }
 }
