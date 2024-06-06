@@ -1,4 +1,5 @@
 using Pattern;
+using ScriptableObjectArchitecture;
 using UnityEngine;
 
 namespace Controllers
@@ -7,18 +8,22 @@ namespace Controllers
     {
         [SerializeField] private ILocomotionState _state;
         [field: SerializeField] public Fsm Machine { get; private set; }
+        [SerializeField] private Animator _anim;
+        [SerializeField] private Vector3Variable Input;
+        
+        
 
 
         void Start()
         {
             Machine = new LocomotionMachine();
-            Machine.Initialisation(LocomotionFactory.Create("Idle", this));
+            Machine.Initialisation(LocomotionFactory.Create("Walk", this));
         }
 
-        // Update is called once per frame
         void Update()
         {
             Machine.Update();
         }
     }
+    
 }

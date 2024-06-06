@@ -19,7 +19,8 @@ namespace Pattern
 
         public void Update()
         {
-            if (Input.GetKey(KeyCode.W))
+            Debug.Log("idle updat");
+            
                 _playerContoller.Machine.ChangeTo(LocomotionFactory.Create("Walk", _playerContoller));
         }
 
