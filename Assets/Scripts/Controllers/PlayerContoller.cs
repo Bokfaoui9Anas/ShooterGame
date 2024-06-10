@@ -1,6 +1,5 @@
 using System;
 using Pattern;
-using Pattern.Extension;
 using ScriptableObjectArchitecture;
 using UnityEngine;
 
@@ -9,24 +8,34 @@ namespace Controllers
     [RequireComponent(typeof(Rigidbody))]
     public class PlayerContoller : MonoBehaviour
     {
-        [Header("State machine :")]
-        [SerializeField] private ILocomotionState _state;
-        [field: SerializeField] public Fsm Machine { get; private set; }
-        
-        
-        
-        
         [SerializeField] public Animator _anim;
-        [SerializeField] public bool _isgrounded = true;
-        [SerializeField] public Vector3Variable Input;
+
+
+        [SerializeField] public Vector3Variable input;
+
+        [SerializeField] public bool isgrounded = true;
+        [SerializeField] public Vector3Variable playerVelocity;
         [SerializeField] public float speed;
-        [SerializeField] public Vector3Variable  playerVelocity;
-        [field:NonSerialized] public Vector3 velocity;
-        [field:SerializeField]  public float JumpHeight { get; private set; }
 
-       private Rigidbody _rb;
+        [Header("State machine :")] [SerializeField]
+        private ILocomotionState state;
 
-        public Rigidbody Rb { get => _rb; set => _rb = value;}
+        [field: NonSerialized] private Vector3 velocity;
+        [field: SerializeField] public Fsm Machine { get; private set; }
+        [field: SerializeField] public float JumpHeight { get; private set; }
+        public Rigidbody Rb { get; set; }
+
+        public IMovementBase MovementBase { get; set; } = new Movement();
+
+        public IOrientation Orientation { get; set; } = new OrientationForward();
+
+    public enum PlayerState
+    {
+        Idle,Jump,Walk
+    }
+
+    public PlayerState State ;
+        
 
 
         private void Start()
@@ -43,34 +52,12 @@ namespace Controllers
 
         private void OnCollisionStay(Collision other)
         {
-            if (other.gameObject.CompareTag("Ground"))
-            {
-                _isgrounded = true;
-            }
+            if (other.gameObject.CompareTag("Ground")) isgrounded = true;
         }
 
         private void OnCollisionExit(Collision other)
         {
-            if (other.gameObject.CompareTag("Ground"))
-            {
-                _isgrounded = false;
-            }
+            if (other.gameObject.CompareTag("Ground")) isgrounded = false;
         }
-        
-
-
-        // public void Landing(PlayerContoller playerContoller)
-        // {
-        //
-        //     velocity = Vector3.zero;
-        //     velocity.y += gravity * Time.deltaTime;
-        //     if (playerContoller._isgrounded && velocity.y < 0.2f) velocity.y = -1;
-        //     playerVelocity.Value = velocity;
-        //
-        //     playerContoller.CharacterController.Move(playerVelocity.Value);
-        // }
-
-      
     }
-    
 }
