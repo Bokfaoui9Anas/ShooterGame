@@ -28,8 +28,9 @@ namespace Controllers
         public IMovementBase MovementBase { get; set; } = new Movement();
 
         public IOrientation Orientation { get; set; } = new OrientationForward();
+       [field: SerializeField] public float JumpSpeed { get; set; }
 
-    public enum PlayerState
+        public enum PlayerState
     {
         Idle,Jump,Walk
     }
