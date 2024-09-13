@@ -28,27 +28,37 @@ namespace Controllers
         public IMovementBase MovementBase { get; set; } = new Movement();
 
         public IOrientation Orientation { get; set; } = new OrientationForward();
-       [field: SerializeField] public float JumpSpeed { get; set; }
+        [field: SerializeField] public float JumpSpeed { get; set; }
+        [field: SerializeField] public Sensor Sensor { get; private set; }
+        private SphereCollider _sphereCollider;
 
         public enum PlayerState
-    {
-        Idle,Jump,Walk
-    }
+        {
+            Idle,
+            Jump,
+            Walk
+        }
 
-    public PlayerState State ;
-        
+        public PlayerState State;
 
+
+        private void Awake()
+        {
+            Sensor = gameObject.AddComponent<Sensor>();
+        }
 
         private void Start()
         {
             Rb = GetComponent<Rigidbody>();
             Machine = new LocomotionMachine();
             Machine.Initialisation(LocomotionFactory.Create("Idle", this));
+            
         }
 
         private void Update()
         {
             Machine.Update();
+           
         }
 
         private void OnCollisionStay(Collision other)

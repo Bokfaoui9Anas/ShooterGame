@@ -204,10 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e864853fd877fa845b9b3b7049645983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  graphic: {fileID: 1939412943620932092}
-  Yoffcet: 0.21
-  reduis: 3.33
-  nbPoints: 50
+  _allenemey: []
 --- !u!1 &8731832525305277884
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,8 +215,8 @@ GameObject:
   m_Component:
   - component: {fileID: 763357237395558884}
   - component: {fileID: 9155203492576471873}
-  - component: {fileID: 4622898482994240764}
   - component: {fileID: 5081338314145465460}
+  - component: {fileID: 4622898482994240764}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -267,26 +264,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &4622898482994240764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8731832525305277884}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a25bbd433e2c13e489aed740cf809b8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _anim: {fileID: 4524536896589567188}
-  input: {fileID: 11400000, guid: bc97f154443b032419e4aab6e022068b, type: 2}
-  isgrounded: 1
-  playerVelocity: {fileID: 11400000, guid: 5ed291cce054cd44a8640a0f709ecfa3, type: 2}
-  speed: 5
-  <JumpHeight>k__BackingField: 1
-  <JumpSpeed>k__BackingField: 5
-  State: 0
 --- !u!54 &5081338314145465460
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -314,6 +291,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &4622898482994240764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8731832525305277884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a25bbd433e2c13e489aed740cf809b8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _anim: {fileID: 4524536896589567188}
+  input: {fileID: 11400000, guid: bc97f154443b032419e4aab6e022068b, type: 2}
+  isgrounded: 1
+  playerVelocity: {fileID: 11400000, guid: 5ed291cce054cd44a8640a0f709ecfa3, type: 2}
+  speed: 5
+  <JumpHeight>k__BackingField: 1
+  <JumpSpeed>k__BackingField: 5
+  <Sensor>k__BackingField: {fileID: 0}
+  State: 0
 --- !u!1001 &6286442559352480321
 PrefabInstance:
   m_ObjectHideFlags: 0

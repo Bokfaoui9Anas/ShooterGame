@@ -458,7 +458,8 @@
                     "Player",
                     "GameController",
                     "PlayerEyes",
-                    "Ground"
+                    "Ground",
+                    "Enemy"
                 ],
                 "_slopeFilter": {
                     "_v1": 0.0,
@@ -7702,7 +7703,8 @@
                     "Player",
                     "GameController",
                     "PlayerEyes",
-                    "Ground"
+                    "Ground",
+                    "Enemy"
                 ]
             }
         ],
